@@ -130,7 +130,7 @@ bot.onText(/\/start/, (msg) => {
             } else if (results[0].step === "4") {
                bot.sendMessage(
                   msg.chat.id,
-                  "Насколько удобно было пройти регистрацию в приложении? от 1 до 5. Где 1-нудобно, 5-очень удобно.",
+                  "Насколько удобно было пройти регистрацию в приложении? от 1 до 5. Где 1-неудобно, 5-очень удобно.",
                   {
                      reply_markup: {
                         resize_keyboard: true,
@@ -371,50 +371,193 @@ bot.on("message", (msg) => {
                   );
                }
             } else if (results[0].step == "2-1") {
+               let userPhone = msg.text;
+               const result = validatePhoneNumber.validate(userPhone);
+               if (result) {
+                  bot.sendMessage(
+                     userId,
+                     "OLOVE ilovasi to'g'risida qaerdan eshitdingiz?",
+                     {
+                        reply_markup: {
+                           resize_keyboard: true,
+                           inline_keyboard: [
+                              [
+                                 {
+                                    text: "Instagram-dagi OLOVE sahifasi",
+                                    callback_data: "var1-5",
+                                 },
+                              ],
+                              [
+                                 {
+                                    text: "Instagram-dagi boshqa foydalanuvchilarning sahifasi",
+                                    callback_data: "var1-6",
+                                 },
+                              ],
+                              [
+                                 {
+                                    text: "Tanishlar orqali",
+                                    callback_data: "var1-7",
+                                 },
+                              ],
+                              [
+                                 {
+                                    text: "Boshqa",
+                                    callback_data: "var1-8",
+                                 },
+                              ],
+                           ],
+                        },
+                     }
+                  );
+                  var sql =
+                     "UPDATE users SET phone = ?, step = ? WHERE userid = ?";
+                  connection.query(
+                     sql,
+                     [userPhone, "3-1", userId],
+                     function (err, result) {
+                        if (err) throw err;
+                        console.log(result.affectedRows + " record(s) updated");
+                     }
+                  );
+                  console.log(result);
+               } else {
+                  bot.sendMessage(
+                     userId,
+                     "To'g'ri raqam kiriting. Misol: +998 XX XXX XX XX"
+                  );
+               }
+            } else if (results[0].step1 == 4) {
+               let userAnswer = msg.text;
                bot.sendMessage(
-                  userId,
-                  "OLOVE ilovasi to'g'risida qaerdan eshitdingiz?",
+                  msg.chat.id,
+                  "Насколько удобно было пройти регистрацию в приложении? от 1 до 5. Где 1-неудобно, 5-очень удобно.",
                   {
                      reply_markup: {
                         resize_keyboard: true,
                         inline_keyboard: [
                            [
                               {
-                                 text: "Instagram-dagi OLOVE sahifasi",
-                                 callback_data: "var1-5",
+                                 text: "1️⃣",
+                                 callback_data: "var2-1",
                               },
                            ],
                            [
                               {
-                                 text: "Instagram-dagi boshqa foydalanuvchilarning sahifasi",
-                                 callback_data: "var1-6",
+                                 text: "2️⃣",
+                                 callback_data: "var2-2",
                               },
                            ],
                            [
                               {
-                                 text: "Tanishlar orqali",
-                                 callback_data: "var1-7",
+                                 text: "3️⃣",
+                                 callback_data: "var2-3",
                               },
                            ],
                            [
                               {
-                                 text: "Boshqa",
-                                 callback_data: "var1-8",
+                                 text: "4️⃣",
+                                 callback_data: "var2-4",
+                              },
+                           ],
+                           [
+                              {
+                                 text: "5️⃣",
+                                 callback_data: "var2-5",
                               },
                            ],
                         ],
                      },
                   }
                );
-               let userPhone = msg.text;
-               var sql =
-                  "UPDATE users SET phone = ?, step = ? WHERE userid = ?";
                connection.query(
-                  sql,
-                  [userPhone, "3-1", userId],
-                  function (err, result) {
-                     if (err) throw err;
-                     console.log(result.affectedRows + " record(s) updated");
+                  "SELECT * FROM users WHERE userid = ?",
+                  [userId],
+                  (error, results) => {
+                     if (error) {
+                        console.log(error, "1");
+                     } else {
+                        if (results.length === 0) {
+                           console.log("2");
+                        } else {
+                           const sql =
+                              "UPDATE users SET step = '4' , step1 = ? WHERE userid = ?";
+                           connection.query(
+                              sql,
+                              [userAnswer, userId],
+                              function (err, results) {
+                                 if (err) console.log(err, "3");
+                                 else console.log("4");
+                              }
+                           );
+                        }
+                     }
+                  }
+               );
+            } else if (results[0].step1 == "4-1") {
+               let userAnswer = msg.text;
+               bot.sendMessage(
+                  msg.chat.id,
+                  "Ilovada ro'yxatdan o'tish qanchalik qulay bo'ldi? 1 - juda noqulay , 5 - juda qulay.",
+                  {
+                     reply_markup: {
+                        resize_keyboard: true,
+                        inline_keyboard: [
+                           [
+                              {
+                                 text: "1️⃣",
+                                 callback_data: "var2-6",
+                              },
+                           ],
+                           [
+                              {
+                                 text: "2️⃣",
+                                 callback_data: "var2-7",
+                              },
+                           ],
+                           [
+                              {
+                                 text: "3️⃣",
+                                 callback_data: "var2-8",
+                              },
+                           ],
+                           [
+                              {
+                                 text: "4️⃣",
+                                 callback_data: "var2-9",
+                              },
+                           ],
+                           [
+                              {
+                                 text: "5️⃣",
+                                 callback_data: "var2-10",
+                              },
+                           ],
+                        ],
+                     },
+                  }
+               );
+               connection.query(
+                  "SELECT * FROM users WHERE userid = ?",
+                  [userId],
+                  (error, results) => {
+                     if (error) {
+                        console.log(error, "1");
+                     } else {
+                        if (results.length === 0) {
+                           console.log("2");
+                        } else {
+                           const sql =
+                              "UPDATE users SET step = '4-1' , step1 = ? WHERE userid = ?";
+                           connection.query(
+                              sql,
+                              [userAnswer, userId],
+                              function (err, results) {
+                                 if (err) console.log(err, "3");
+                                 else console.log("4");
+                              }
+                           );
+                        }
+                     }
                   }
                );
             }
@@ -485,7 +628,7 @@ bot.on("callback_query", (callbackQuery) => {
       bot.answerCallbackQuery(callbackQuery.id).then(() =>
          bot.sendMessage(
             msg.chat.id,
-            "Насколько удобно было пройти регистрацию в приложении? от 1 до 5. Где 1-нудобно, 5-очень удобно.",
+            "Насколько удобно было пройти регистрацию в приложении? от 1 до 5. Где 1-неудобно, 5-очень удобно.",
             {
                reply_markup: {
                   resize_keyboard: true,
@@ -550,7 +693,7 @@ bot.on("callback_query", (callbackQuery) => {
       bot.answerCallbackQuery(callbackQuery.id).then(() =>
          bot.sendMessage(
             msg.chat.id,
-            "Насколько удобно было пройти регистрацию в приложении? от 1 до 5. Где 1-нудобно, 5-очень удобно.",
+            "Насколько удобно было пройти регистрацию в приложении? от 1 до 5. Где 1-неудобно, 5-очень удобно.",
             {
                reply_markup: {
                   resize_keyboard: true,
@@ -615,7 +758,7 @@ bot.on("callback_query", (callbackQuery) => {
       bot.answerCallbackQuery(callbackQuery.id).then(() =>
          bot.sendMessage(
             msg.chat.id,
-            "Насколько удобно было пройти регистрацию в приложении? от 1 до 5. Где 1-нудобно, 5-очень удобно.",
+            "Насколько удобно было пройти регистрацию в приложении? от 1 до 5. Где 1-неудобно, 5-очень удобно.",
             {
                reply_markup: {
                   resize_keyboard: true,
@@ -680,44 +823,7 @@ bot.on("callback_query", (callbackQuery) => {
       bot.answerCallbackQuery(callbackQuery.id).then(() =>
          bot.sendMessage(
             msg.chat.id,
-            "Насколько удобно было пройти регистрацию в приложении? от 1 до 5. Где 1-нудобно, 5-очень удобно.",
-            {
-               reply_markup: {
-                  resize_keyboard: true,
-                  inline_keyboard: [
-                     [
-                        {
-                           text: "1️⃣",
-                           callback_data: "var2-1",
-                        },
-                     ],
-                     [
-                        {
-                           text: "2️⃣",
-                           callback_data: "var2-2",
-                        },
-                     ],
-                     [
-                        {
-                           text: "3️⃣",
-                           callback_data: "var2-3",
-                        },
-                     ],
-                     [
-                        {
-                           text: "4️⃣",
-                           callback_data: "var2-4",
-                        },
-                     ],
-                     [
-                        {
-                           text: "5️⃣",
-                           callback_data: "var2-5",
-                        },
-                     ],
-                  ],
-               },
-            }
+            "Напишите откуда Вы узнали про приложение 'OLOVE'"
          )
       );
       bot.deleteMessage(msg.chat.id, msg.message_id);
@@ -731,8 +837,7 @@ bot.on("callback_query", (callbackQuery) => {
                if (results.length === 0) {
                   console.log("2");
                } else {
-                  const sql =
-                     "UPDATE users SET step = '4' , step1 = '4' WHERE userid = ?";
+                  const sql = "UPDATE users SET step1 = '4' WHERE userid = ?";
                   connection.query(sql, userId, function (err, results) {
                      if (err) console.log(err, "3");
                      else console.log("4");
@@ -991,8 +1096,7 @@ bot.on("callback_query", (callbackQuery) => {
                if (results.length === 0) {
                   console.log("2");
                } else {
-                  const sql =
-                     "UPDATE users SET step = '4-1' , step1 = '4' WHERE userid = ?";
+                  const sql = "UPDATE users SET step1 = '4-1' WHERE userid = ?";
                   connection.query(sql, userId, function (err, results) {
                      if (err) console.log(err, "3");
                      else console.log("4");
