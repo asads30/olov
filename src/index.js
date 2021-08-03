@@ -1045,44 +1045,7 @@ bot.on("callback_query", (callbackQuery) => {
       bot.answerCallbackQuery(callbackQuery.id).then(() =>
          bot.sendMessage(
             msg.chat.id,
-            "Ilovada ro'yxatdan o'tish qanchalik qulay bo'ldi? 1 - juda noqulay , 5 - juda qulay.",
-            {
-               reply_markup: {
-                  resize_keyboard: true,
-                  inline_keyboard: [
-                     [
-                        {
-                           text: "1️⃣",
-                           callback_data: "var2-6",
-                        },
-                     ],
-                     [
-                        {
-                           text: "2️⃣",
-                           callback_data: "var2-7",
-                        },
-                     ],
-                     [
-                        {
-                           text: "3️⃣",
-                           callback_data: "var2-8",
-                        },
-                     ],
-                     [
-                        {
-                           text: "4️⃣",
-                           callback_data: "var2-9",
-                        },
-                     ],
-                     [
-                        {
-                           text: "5️⃣",
-                           callback_data: "var2-10",
-                        },
-                     ],
-                  ],
-               },
-            }
+            "'OLOVE' ilovasi to'g'risida qaerdan eshitganingizni yozing"
          )
       );
       bot.deleteMessage(msg.chat.id, msg.message_id);
