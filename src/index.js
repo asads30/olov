@@ -284,22 +284,20 @@ bot.onText(/\/stats/, (msg) => {
             if (error) {
                 console.log("Ошибка при поиске в users", error);
             } else {
-                if (results[0].userid == admin) {
-                    let allUser = results.length;
-                    bot.sendMessage(helpers.getChatId(msg), `Здравствуйте админ!
-                    
-Статистика: 
-
-Кол-во пользователей: ${allUser}
-`);
-                } else if (results[0].userid == admin2) {
-                    let allUser = results.length;
-                    bot.sendMessage(helpers.getChatId(msg), `Здравствуйте админ!
-                    
-Статистика: 
-
-Кол-во пользователей: ${allUser}
-`);
+                if (results.length === 0) {} else if (results[0].userid == admin & results[0].userid == admin2) {
+                    connection.query("SELECT * FROM users", (error, results2) => {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            let allUser = results2.length;
+                            bot.sendMessage(
+                                helpers.getChatId(msg),
+                                `Кол-во пользователей: ${allUser}`
+                            );
+                        }
+                    });
+                } else {
+                    console.log("Не размещу");
                 }
             }
         }
