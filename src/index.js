@@ -275,6 +275,63 @@ Sizning javoblaringiz:
     );
 });
 
+bot.onText(/\/stats/, (msg) => {
+    let admin = 41444920
+    let admin2 = 386567097
+    let regName = msg.from.first_name;
+    let regUsername = msg.from.username;
+    connection.query(
+        "SELECT * FROM users WHERE userid = ?", [helpers.getUserId(msg)],
+        (error, results) => {
+            if (error) {
+                console.log("Ошибка при поиске в users", error);
+            } else {
+                if (results.length === 0) {
+                    const user = [regName, helpers.getUserId(msg), regUsername, 1];
+                    const sql =
+                        "INSERT INTO users(name, userid, username, step) VALUES(?, ?, ?, ?)";
+                    connection.query(sql, user, function(err, results) {
+                        if (err) console.log(err);
+                        else console.log("Юзер зареган");
+                    });
+                    bot.sendMessage(helpers.getChatId(msg), text, {
+                        reply_markup: {
+                            resize_keyboard: true,
+                            inline_keyboard: [
+                                [{
+                                        text: "🇷🇺 Русский",
+                                        callback_data: "ru",
+                                    },
+                                    {
+                                        text: "🇺🇿 O'zbek tili",
+                                        callback_data: "uz",
+                                    },
+                                ],
+                            ],
+                        },
+                    });
+                } else if (results[0].userid == admin) {
+                    let allUser = results2.length;
+                    bot.sendMessage(helpers.getChatId(msg), `Здравствуйте админ!
+                    
+Статистика: 
+
+Кол-во пользователей: ${allUser}
+`);
+                } else if (results[0].userid == admin2) {
+                    let allUser = results2.length;
+                    bot.sendMessage(helpers.getChatId(msg), `Здравствуйте админ!
+                    
+Статистика: 
+
+Кол-во пользователей: ${allUser}
+`);
+                }
+            }
+        }
+    );
+});
+
 bot.on("message", (msg) => {
     let userId = msg.from.id;
     connection.query(
