@@ -293,7 +293,7 @@ bot.onText(/\/stats/, (msg) => {
                             const usersQuan = results3.length
                             bot.sendMessage(helpers.getChatId(msg), `Кол-во юзеров: ${usersQuan}, Список пользователей:`)
                             for (let i = 0; i < users.length; i++) {
-                                let var1 = (users[i].step1 === 1) ? 'Страница OLOVE в Инстаграм' : (users[i].step1 === 2) ? 'Страница других пользователей в Инстаграм' : (users[i].step1 === 3) ? 'Знакомых' : users[i].step1
+                                let var1 = (users[i].step1 === '1') ? 'Страница OLOVE в Инстаграм' : (users[i].step1 === '2') ? 'Страница других пользователей в Инстаграм' : (users[i].step1 === '3') ? 'Знакомых' : users[i].step1
                                 let var2 = users[i].step2
                                 let var3 = (users[i].step3 === '1') ? 'Да' : 'Нет'
                                 bot.sendMessage(helpers.getChatId(msg), `${users[i].name}: username (${users[i].username}), номер телефона (${users[i].phone}), ответ1 (${var1}), ответ2 (${var2}), ответ3 (${var3})`)
