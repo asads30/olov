@@ -173,7 +173,7 @@ bot.onText(/\/start/, (msg) => {
                         "Спасибо за уделенное время. Мы только запустили наше приложение, и Ваше мнение очень ценно для нас. 1 сентября мы объявим победителей нашего конкурса и вручим ценные призы. Оставайтесь с нами, впереди вас ждет много интересного."
                     );
                     connection.query(
-                        "SELECT * FROM users WHERE userid = ?", [userId],
+                        "SELECT * FROM users WHERE userid = ?", [helpers.getUserId(msg)],
                         (error, results) => {
                             if (error) {
                                 console.log(error, "1");
