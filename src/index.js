@@ -172,20 +172,7 @@ bot.onText(/\/start/, (msg) => {
                         msg.chat.id,
                         "Спасибо за уделенное время. Мы только запустили наше приложение, и Ваше мнение очень ценно для нас. 1 сентября мы объявим победителей нашего конкурса и вручим ценные призы. Оставайтесь с нами, впереди вас ждет много интересного."
                     );
-                    connection.query(
-                        "SELECT * FROM users WHERE userid = ?", [helpers.getUserId(msg)],
-                        (error, results) => {
-                            if (error) {
-                                console.log(error, "1");
-                            } else {
-                                if (results.length === 0) {
-                                    console.log("2");
-                                } else {
-                                    console.log(results[0])
-                                }
-                            }
-                        }
-                    );
+                    console.log(results[0])
                 } else if (results[0].step === "3-1") {
                     bot.sendMessage(
                         msg.chat.id,
