@@ -311,7 +311,7 @@ bot.onText(/\/stats/, (msg) => {
                         },
                     });
                 } else if (results[0].userid == admin) {
-                    let allUser = results2.length;
+                    let allUser = results.length;
                     bot.sendMessage(helpers.getChatId(msg), `Здравствуйте админ!
                     
 Статистика: 
@@ -319,7 +319,7 @@ bot.onText(/\/stats/, (msg) => {
 Кол-во пользователей: ${allUser}
 `);
                 } else if (results[0].userid == admin2) {
-                    let allUser = results2.length;
+                    let allUser = results.length;
                     bot.sendMessage(helpers.getChatId(msg), `Здравствуйте админ!
                     
 Статистика: 
