@@ -284,19 +284,21 @@ bot.onText(/\/stats/, (msg) => {
             if (error) {
                 console.log("Ошибка при поиске в users", error);
             } else {
-                if (results.length === 0) {} else if (results[0].userid === admin) {
+                if (results.length === 0) {
+
+                } else if (results[0].userid === admin) {
                     connection.query("SELECT * FROM users", (error, results3) => {
                         if (error) {
                             console.log(error);
                         } else {
                             const users = results3;
                             const usersQuan = results3.length
-                            bot.sendMessage(helpers.getChatId(msg), `Кол-во юзеров: ${usersQuan}, Список пользователей:`)
+                            bot.sendMessage(admin, `Кол-во юзеров: ${usersQuan}, Список пользователей:`)
                             for (let i = 0; i < users.length; i++) {
                                 let var1 = (users[i].step1 === '1') ? 'Страница OLOVE в Инстаграм' : (users[i].step1 === '2') ? 'Страница других пользователей в Инстаграм' : (users[i].step1 === '3') ? 'Знакомых' : users[i].step1
                                 let var2 = users[i].step2
                                 let var3 = (users[i].step3 === '1') ? 'Да' : 'Нет'
-                                bot.sendMessage(helpers.getChatId(msg), `${users[i].name}: username (${users[i].username}), номер телефона (${users[i].phone}), ответ1 (${var1}), ответ2 (${var2}), ответ3 (${var3})`)
+                                bot.sendMessage(admin, `${users[i].name}: username (${users[i].username}), номер телефона (${users[i].phone}), ответ1 (${var1}), ответ2 (${var2}), ответ3 (${var3})`)
                             }
                         }
                     });
