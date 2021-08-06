@@ -269,10 +269,6 @@ Sizning javoblaringiz:
 2) Ilovada ro'yxatdan o'tish qanchalik qulay bo'ldi - ${var2}
 3) Ilovadan kelajakda foydalanasizmi - ${var3}`
                     );
-                    bot.sendMessage(
-                        msg.chat.id,
-                        "Vaqtingiz uchun katta rahmat. Biz hozirda o'z dasturimizni ishga tushirdik va sizning fikr-mulohazalaringiz biz uchun juda qadrlidir. 1 sentyabr kuni biz tanlovimiz g'oliblarini e'lon qilamiz va qimmatbaho sovg'alarni topshiramiz. Bizni kuzatib turing, sizni oldinda ko'plab qiziqarli narsalar kutmoqda."
-                    );
                 }
             }
         }
@@ -1325,7 +1321,8 @@ bot.on("callback_query", (callbackQuery) => {
                             bot.sendMessage(
                                 msg.chat.id,
                                 `Спасибо за уделенное время. Мы только запустили наше приложение, и Ваше мнение очень ценно для нас. 1 сентября мы объявим победителей нашего конкурса и вручим ценные призы. Оставайтесь с нами, впереди вас ждет много интересного.
-Ваши ответы:
+
+                                Ваши ответы:
 1) Откуда Вы узнали про приложение - ${var1}
 2) Насколько удобно было пройти регистрацию в приложении - ${var2}
 3) Будете ли Вы использовать приложение - ${var3}`
@@ -1342,34 +1339,7 @@ bot.on("callback_query", (callbackQuery) => {
             }
         );
         bot.deleteMessage(msg.chat.id, msg.message_id);
-        connection.query(
-            "SELECT * FROM users WHERE userid = ?", [userId],
-            (error, results) => {
-                if (error) {
-                    console.log(error, "1");
-                } else {
-                    if (results.length === 0) {
-                        console.log("2");
-                    } else {
-                        console.log(results)
-                        const sql =
-                            "UPDATE users SET step = '6' , step3 = '1' WHERE userid = ?";
-                        connection.query(sql, userId, function(err, results) {
-                            if (err) console.log(err, "3");
-                            else console.log("4");
-                        });
-                    }
-                }
-            }
-        );
     } else if (msgId === "var3-2") {
-        bot.answerCallbackQuery(callbackQuery.id).then(() =>
-            bot.sendMessage(
-                msg.chat.id,
-                "Спасибо за уделенное время. Мы только запустили наше приложение, и Ваше мнение очень ценно для нас. 1 сентября мы объявим победителей нашего конкурса и вручим ценные призы. Оставайтесь с нами, впереди вас ждет много интересного."
-            )
-        );
-        bot.deleteMessage(msg.chat.id, msg.message_id);
         connection.query(
             "SELECT * FROM users WHERE userid = ?", [userId],
             (error, results) => {
@@ -1379,6 +1349,20 @@ bot.on("callback_query", (callbackQuery) => {
                     if (results.length === 0) {
                         console.log("2");
                     } else {
+                        let var1 = (results[0].step1 === 1) ? 'Страница OLOVE в Инстаграм' : (results[0].step1 === 2) ? 'Страница других пользователей в Инстаграм' : (results[0].step1 === 3) ? 'Знакомых' : results[0].step1
+                        let var2 = results[0].step2
+                        let var3 = (results[0].step3 === '1') ? 'Да' : 'Нет'
+                        bot.answerCallbackQuery(callbackQuery.id).then(() =>
+                            bot.sendMessage(
+                                msg.chat.id,
+                                `Спасибо за уделенное время. Мы только запустили наше приложение, и Ваше мнение очень ценно для нас. 1 сентября мы объявим победителей нашего конкурса и вручим ценные призы. Оставайтесь с нами, впереди вас ждет много интересного.
+
+                                Ваши ответы:
+1) Откуда Вы узнали про приложение - ${var1}
+2) Насколько удобно было пройти регистрацию в приложении - ${var2}
+3) Будете ли Вы использовать приложение - ${var3}`
+                            )
+                        );
                         const sql =
                             "UPDATE users SET step = '6' , step3 = '2' WHERE userid = ?";
                         connection.query(sql, userId, function(err, results) {
@@ -1389,14 +1373,8 @@ bot.on("callback_query", (callbackQuery) => {
                 }
             }
         );
-    } else if (msgId === "var3-3") {
-        bot.answerCallbackQuery(callbackQuery.id).then(() =>
-            bot.sendMessage(
-                msg.chat.id,
-                "Vaqtingiz uchun katta rahmat. Biz hozirda o'z dasturimizni ishga tushirdik va sizning fikr-mulohazalaringiz biz uchun juda qadrlidir. 1 sentyabr kuni biz tanlovimiz g'oliblarini e'lon qilamiz va qimmatbaho sovg'alarni topshiramiz. Bizni kuzatib turing, sizni oldinda ko'plab qiziqarli narsalar kutmoqda."
-            )
-        );
         bot.deleteMessage(msg.chat.id, msg.message_id);
+    } else if (msgId === "var3-3") {
         connection.query(
             "SELECT * FROM users WHERE userid = ?", [userId],
             (error, results) => {
@@ -1406,6 +1384,19 @@ bot.on("callback_query", (callbackQuery) => {
                     if (results.length === 0) {
                         console.log("2");
                     } else {
+                        let var1 = (results[0].step1 === 1) ? 'Instagram-dagi OLOVE sahifasi' : (results[0].step1 === 2) ? 'Instagram-dagi boshqa foydalanuvchilarning sahifasi' : (results[0].step1 === 3) ? 'Tanishlar orqali' : results[0].step1
+                        let var2 = results[0].step2
+                        let var3 = (results[0].step3 === '1') ? 'Ha' : "Yo'q"
+                        bot.answerCallbackQuery(callbackQuery.id).then(() =>
+                            bot.sendMessage(
+                                msg.chat.id,
+                                `Vaqtingiz uchun katta rahmat. Biz hozirda o'z dasturimizni ishga tushirdik va sizning fikr-mulohazalaringiz biz uchun juda qadrlidir. 1 sentyabr kuni biz tanlovimiz g'oliblarini e'lon qilamiz va qimmatbaho sovg'alarni topshiramiz. Bizni kuzatib turing, sizni oldinda ko'plab qiziqarli narsalar kutmoqda.
+Sizning javoblaringiz:
+1) OLOVE ilovasi to'g'risida qaerdan eshitdingiz - ${var1}
+2) Ilovada ro'yxatdan o'tish qanchalik qulay bo'ldi - ${var2}
+3) Ilovadan kelajakda foydalanasizmi - ${var3}`
+                            )
+                        );
                         const sql =
                             "UPDATE users SET step = '6-1' , step3 = '1' WHERE userid = ?";
                         connection.query(sql, userId, function(err, results) {
@@ -1416,14 +1407,8 @@ bot.on("callback_query", (callbackQuery) => {
                 }
             }
         );
-    } else if (msgId === "var3-4") {
-        bot.answerCallbackQuery(callbackQuery.id).then(() =>
-            bot.sendMessage(
-                msg.chat.id,
-                "Vaqtingiz uchun katta rahmat. Biz hozirda o'z dasturimizni ishga tushirdik va sizning fikr-mulohazalaringiz biz uchun juda qadrlidir. 1 sentyabr kuni biz tanlovimiz g'oliblarini e'lon qilamiz va qimmatbaho sovg'alarni topshiramiz. Bizni kuzatib turing, sizni oldinda ko'plab qiziqarli narsalar kutmoqda."
-            )
-        );
         bot.deleteMessage(msg.chat.id, msg.message_id);
+    } else if (msgId === "var3-4") {
         connection.query(
             "SELECT * FROM users WHERE userid = ?", [userId],
             (error, results) => {
@@ -1433,6 +1418,19 @@ bot.on("callback_query", (callbackQuery) => {
                     if (results.length === 0) {
                         console.log("2");
                     } else {
+                        let var1 = (results[0].step1 === 1) ? 'Instagram-dagi OLOVE sahifasi' : (results[0].step1 === 2) ? 'Instagram-dagi boshqa foydalanuvchilarning sahifasi' : (results[0].step1 === 3) ? 'Tanishlar orqali' : results[0].step1
+                        let var2 = results[0].step2
+                        let var3 = (results[0].step3 === '1') ? 'Ha' : "Yo'q"
+                        bot.answerCallbackQuery(callbackQuery.id).then(() =>
+                            bot.sendMessage(
+                                msg.chat.id,
+                                `Vaqtingiz uchun katta rahmat. Biz hozirda o'z dasturimizni ishga tushirdik va sizning fikr-mulohazalaringiz biz uchun juda qadrlidir. 1 sentyabr kuni biz tanlovimiz g'oliblarini e'lon qilamiz va qimmatbaho sovg'alarni topshiramiz. Bizni kuzatib turing, sizni oldinda ko'plab qiziqarli narsalar kutmoqda.
+Sizning javoblaringiz:
+1) OLOVE ilovasi to'g'risida qaerdan eshitdingiz - ${var1}
+2) Ilovada ro'yxatdan o'tish qanchalik qulay bo'ldi - ${var2}
+3) Ilovadan kelajakda foydalanasizmi - ${var3}`
+                            )
+                        );
                         const sql =
                             "UPDATE users SET step = '6-1' , step3 = '2' WHERE userid = ?";
                         connection.query(sql, userId, function(err, results) {
@@ -1443,5 +1441,6 @@ bot.on("callback_query", (callbackQuery) => {
                 }
             }
         );
+        bot.deleteMessage(msg.chat.id, msg.message_id);
     }
 });
