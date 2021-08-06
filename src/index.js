@@ -284,7 +284,7 @@ bot.onText(/\/stats/, (msg) => {
             if (error) {
                 console.log("Ошибка при поиске в users", error);
             } else {
-                if (results.length === 0) {} else if (results[0].userid == admin & results[0].userid == admin2) {
+                if (results.length === 0) {} else if (results[0].userid === admin2) {
                     connection.query("SELECT * FROM users", (error, results2) => {
                         if (error) {
                             console.log(error);
@@ -297,7 +297,7 @@ bot.onText(/\/stats/, (msg) => {
                         }
                     });
                 } else {
-                    console.log("Не размещу");
+                    console.log("Не работает");
                 }
             }
         }
