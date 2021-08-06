@@ -258,6 +258,17 @@ bot.onText(/\/start/, (msg) => {
                         }
                     );
                 } else if (results[0].step === "6-1") {
+                    let var1 = (results[0].step1 === 1) ? 'Instagram-dagi OLOVE sahifasi' : (results[0].step1 === 2) ? 'Instagram-dagi boshqa foydalanuvchilarning sahifasi' : (results[0].step1 === 3) ? 'Tanishlar orqali' : results[0].step1
+                    let var2 = results[0].step2
+                    let var3 = (results[0].step3 === '1') ? 'Ha' : "Yo'q"
+                    bot.sendMessage(
+                        msg.chat.id,
+                        `Vaqtingiz uchun katta rahmat. Biz hozirda o'z dasturimizni ishga tushirdik va sizning fikr-mulohazalaringiz biz uchun juda qadrlidir. 1 sentyabr kuni biz tanlovimiz g'oliblarini e'lon qilamiz va qimmatbaho sovg'alarni topshiramiz. Bizni kuzatib turing, sizni oldinda ko'plab qiziqarli narsalar kutmoqda.
+Sizning javoblaringiz:
+1) OLOVE ilovasi to'g'risida qaerdan eshitdingiz - ${var1}
+2) Ilovada ro'yxatdan o'tish qanchalik qulay bo'ldi - ${var2}
+3) Ilovadan kelajakda foydalanasizmi - ${var3}`
+                    );
                     bot.sendMessage(
                         msg.chat.id,
                         "Vaqtingiz uchun katta rahmat. Biz hozirda o'z dasturimizni ishga tushirdik va sizning fikr-mulohazalaringiz biz uchun juda qadrlidir. 1 sentyabr kuni biz tanlovimiz g'oliblarini e'lon qilamiz va qimmatbaho sovg'alarni topshiramiz. Bizni kuzatib turing, sizni oldinda ko'plab qiziqarli narsalar kutmoqda."
@@ -1314,6 +1325,7 @@ bot.on("callback_query", (callbackQuery) => {
                     if (results.length === 0) {
                         console.log("2");
                     } else {
+                        console.log(results)
                         const sql =
                             "UPDATE users SET step = '6' , step3 = '1' WHERE userid = ?";
                         connection.query(sql, userId, function(err, results) {
