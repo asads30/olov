@@ -285,15 +285,18 @@ bot.onText(/\/stats/, (msg) => {
                 console.log("Ошибка при поиске в users", error);
             } else {
                 if (results.length === 0) {} else if (results[0].userid === admin2) {
-                    connection.query("SELECT * FROM users", (error, results2) => {
+                    connection.query("SELECT * FROM users", (error, results3) => {
                         if (error) {
                             console.log(error);
                         } else {
-                            let allUser = results2.length;
-                            bot.sendMessage(
-                                helpers.getChatId(msg),
-                                `Кол-во пользователей: ${allUser}`
-                            );
+                            const users = results3;
+                            const usersQuan = results3.length
+                            for (let i = 0; i < users.length; i++) {
+                                bot.sendMessage(helpers.getChatId(msg), `Кол-во юзеров: ${usersQuan}, 
+Список пользователей:
+
+${users[i].name}: username (${users[i].username})`)
+                            }
                         }
                     });
                 } else {
