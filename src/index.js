@@ -277,7 +277,7 @@ Sizning javoblaringiz:
 
 bot.onText(/\/stats/, (msg) => {
     let admin = 41444920
-    let admin2 = 386567097
+    let admin2 = 281915192
     connection.query(
         "SELECT * FROM users WHERE userid = ?", [helpers.getUserId(msg)],
         (error, results) => {
@@ -287,6 +287,22 @@ bot.onText(/\/stats/, (msg) => {
                 if (results.length === 0) {
 
                 } else if (results[0].userid === admin) {
+                    connection.query("SELECT * FROM users", (error, results3) => {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            const users = results3;
+                            const usersQuan = results3.length
+                            bot.sendMessage(admin, `Кол-во юзеров: ${usersQuan}, Список пользователей:`)
+                            for (let i = 0; i < users.length; i++) {
+                                let var1 = (users[i].step1 === '1') ? 'Страница OLOVE в Инстаграм' : (users[i].step1 === '2') ? 'Страница других пользователей в Инстаграм' : (users[i].step1 === '3') ? 'Знакомых' : users[i].step1
+                                let var2 = users[i].step2
+                                let var3 = (users[i].step3 === '1') ? 'Да' : 'Нет'
+                                bot.sendMessage(admin, `${users[i].name}: username (${users[i].username}), номер телефона (${users[i].phone}), ответ1 (${var1}), ответ2 (${var2}), ответ3 (${var3})`)
+                            }
+                        }
+                    });
+                } if (results[0].userid === admin2) {
                     connection.query("SELECT * FROM users", (error, results3) => {
                         if (error) {
                             console.log(error);
