@@ -1865,6 +1865,12 @@ bot.on("callback_query", (callbackQuery) => {
                if (results.length === 0) {
                   console.log("2");
                } else {
+                  const sql =
+                     "UPDATE users SET step = '7' , step4 = '1' WHERE userid = ?";
+                  connection.query(sql, userId, function (err, results) {
+                     if (err) console.log(err, "3");
+                     else console.log("4");
+                  });
                   let var1 =
                      results[0].step1 === 1
                         ? "Страница OLOVE в Инстаграм"
@@ -1898,12 +1904,6 @@ bot.on("callback_query", (callbackQuery) => {
 4) Будете ли Вы рекомендовать приложение своим друзьям/знакомым - ${var4}`
                      )
                   );
-                  const sql =
-                     "UPDATE users SET step = '7' , step4 = '1' WHERE userid = ?";
-                  connection.query(sql, userId, function (err, results) {
-                     if (err) console.log(err, "3");
-                     else console.log("4");
-                  });
                }
             }
          }
@@ -1920,6 +1920,12 @@ bot.on("callback_query", (callbackQuery) => {
                if (results.length === 0) {
                   console.log("2");
                } else {
+                  const sql =
+                     "UPDATE users SET step = '7' , step4 = '0' WHERE userid = ?";
+                  connection.query(sql, userId, function (err, results) {
+                     if (err) console.log(err, "3");
+                     else console.log("4");
+                  });
                   let var1 =
                      results[0].step1 === 1
                         ? "Страница OLOVE в Инстаграм"
@@ -1953,12 +1959,6 @@ bot.on("callback_query", (callbackQuery) => {
 4) Будете ли Вы рекомендовать приложение своим друзьям/знакомым - ${var4}`
                      )
                   );
-                  const sql =
-                     "UPDATE users SET step = '7' , step4 = '0' WHERE userid = ?";
-                  connection.query(sql, userId, function (err, results) {
-                     if (err) console.log(err, "3");
-                     else console.log("4");
-                  });
                }
             }
          }
@@ -1975,6 +1975,12 @@ bot.on("callback_query", (callbackQuery) => {
                if (results.length === 0) {
                   console.log("2");
                } else {
+                  const sql =
+                     "UPDATE users SET step = '7-1' , step4 = '1' WHERE userid = ?";
+                  connection.query(sql, userId, function (err, results) {
+                     if (err) console.log(err, "3");
+                     else console.log("4");
+                  });
                   let var1 =
                      results[0].step1 === 1
                         ? "Instagram-dagi OLOVE sahifasi"
@@ -2007,12 +2013,6 @@ Sizning javoblaringiz:
 4) Ilovani do'stlaringiz/tanishlaringizga tavsiya qilasizmi - ${var4}`
                      )
                   );
-                  const sql =
-                     "UPDATE users SET step = '7-1' , step4 = '1' WHERE userid = ?";
-                  connection.query(sql, userId, function (err, results) {
-                     if (err) console.log(err, "3");
-                     else console.log("4");
-                  });
                }
             }
          }
@@ -2029,6 +2029,12 @@ Sizning javoblaringiz:
                if (results.length === 0) {
                   console.log("2");
                } else {
+                  const sql =
+                     "UPDATE users SET step = '7-1' , step4 = '0' WHERE userid = ?";
+                  connection.query(sql, userId, function (err, results) {
+                     if (err) console.log(err, "3");
+                     else console.log("4");
+                  });
                   let var1 =
                      results[0].step1 === 1
                         ? "Instagram-dagi OLOVE sahifasi"
@@ -2061,12 +2067,6 @@ Sizning javoblaringiz:
 4) Ilovani do'stlaringiz/tanishlaringizga tavsiya qilasizmi - ${var4}`
                      )
                   );
-                  const sql =
-                     "UPDATE users SET step = '7-1' , step4 = '0' WHERE userid = ?";
-                  connection.query(sql, userId, function (err, results) {
-                     if (err) console.log(err, "3");
-                     else console.log("4");
-                  });
                }
             }
          }
