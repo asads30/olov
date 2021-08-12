@@ -411,7 +411,7 @@ bot.onText(/\/stats/, (msg) => {
                             const users = results3;
                             const usersQuan = results3.length;
                             bot.sendMessage(
-                                admin,
+                                admin2,
                                 `Кол-во юзеров: ${usersQuan}, Список пользователей:`
                             );
                             for (let i = 0; i < users.length; i++) {
@@ -437,7 +437,7 @@ bot.onText(/\/stats/, (msg) => {
                                     "Нет" :
                                     users[i].step4;
                                 bot.sendMessage(
-                                    admin,
+                                    admin2,
                                     `${users[i].name}: username (${users[i].username}), номер телефона (${users[i].phone}), ответ1 (${var1}), ответ2 (${var2}), ответ3 (${var3}), ответ4 (${var4})`
                                 );
                             }
