@@ -1695,7 +1695,7 @@ bot.on("callback_query", (callbackQuery) => {
 1) Откуда Вы узнали про приложение - ${var1}
 2) Насколько удобно было пройти регистрацию в приложении - ${var2}
 3) Будете ли Вы использовать приложение - ${var3}
-4) Будете ли Вы рекомендовать приложение своим друзьям/знакомым - ${var4}`
+4) Будете ли Вы рекомендовать приложение своим друзьям/знакомым - Да`
                                 ),
                                 1000
                             )
@@ -1752,7 +1752,7 @@ bot.on("callback_query", (callbackQuery) => {
 1) Откуда Вы узнали про приложение - ${var1}
 2) Насколько удобно было пройти регистрацию в приложении - ${var2}
 3) Будете ли Вы использовать приложение - ${var3}
-4) Будете ли Вы рекомендовать приложение своим друзьям/знакомым - ${var4}`
+4) Будете ли Вы рекомендовать приложение своим друзьям/знакомым - Нет`
                                 ),
                                 1000
                             )
@@ -1808,7 +1808,7 @@ Sizning javoblaringiz:
 1) OLOVE ilovasi to'g'risida qaerdan eshitdingiz - ${var1}
 2) Ilovada ro'yxatdan o'tish qanchalik qulay bo'ldi - ${var2}
 3) Ilovadan kelajakda foydalanasizmi - ${var3}
-4) Ilovani do'stlaringiz/tanishlaringizga tavsiya qilasizmi - ${var4}`
+4) Ilovani do'stlaringiz/tanishlaringizga tavsiya qilasizmi - Ha`
                                 ),
                                 1000
                             )
@@ -1864,7 +1864,7 @@ Sizning javoblaringiz:
 1) OLOVE ilovasi to'g'risida qaerdan eshitdingiz - ${var1}
 2) Ilovada ro'yxatdan o'tish qanchalik qulay bo'ldi - ${var2}
 3) Ilovadan kelajakda foydalanasizmi - ${var3}
-4) Ilovani do'stlaringiz/tanishlaringizga tavsiya qilasizmi - ${var4}`
+4) Ilovani do'stlaringiz/tanishlaringizga tavsiya qilasizmi - Yo'q`
                                 ),
                                 1000
                             )
