@@ -93,7 +93,7 @@ bot.onText(/\/start/, (msg) => {
                         },
                     });
                 } else if (results[0].step === "3") {
-                    bot.sendMessage(msg.chat.id, "Откуда Вы узнали про приложение", {
+                    bot.sendMessage(msg.chat.id, "Откуда Вы узнали про приложение 'OLOVE'?", {
                         reply_markup: {
                             resize_keyboard: true,
                             inline_keyboard: [
@@ -302,7 +302,8 @@ bot.onText(/\/stats/, (msg) => {
                             }
                         }
                     });
-                } if (results[0].userid === admin2) {
+                }
+                if (results[0].userid === admin2) {
                     connection.query("SELECT * FROM users", (error, results3) => {
                         if (error) {
                             console.log(error);
@@ -340,7 +341,7 @@ bot.on("message", (msg) => {
                     let userPhone = msg.text;
                     const result = validatePhoneNumber.validate(userPhone);
                     if (result) {
-                        bot.sendMessage(userId, "Откуда Вы узнали про приложение", {
+                        bot.sendMessage(userId, "Откуда Вы узнали про приложение 'OLOVE'?", {
                             reply_markup: {
                                 resize_keyboard: true,
                                 inline_keyboard: [
@@ -758,7 +759,7 @@ bot.on("callback_query", (callbackQuery) => {
         bot.answerCallbackQuery(callbackQuery.id).then(() =>
             bot.sendMessage(
                 msg.chat.id,
-                "Напишите откуда Вы узнали про приложение 'OLOVE'"
+                "Напишите откуда Вы узнали про приложение 'OLOVE'?"
             )
         );
         bot.deleteMessage(msg.chat.id, msg.message_id);
@@ -1356,6 +1357,25 @@ bot.on("callback_query", (callbackQuery) => {
             }
         );
     } else if (msgId === "var3-1") {
+        bot.answerCallbackQuery(callbackQuery.id).then(() =>
+            bot.sendMessage(msg.chat.id, "Будете ли Вы использовать приложение?", {
+                reply_markup: {
+                    resize_keyboard: true,
+                    inline_keyboard: [
+                        [{
+                                text: "Да",
+                                callback_data: "var4-1",
+                            },
+                            {
+                                text: "Нет",
+                                callback_data: "var4-2",
+                            },
+                        ],
+                    ],
+                },
+            })
+        );
+        bot.deleteMessage(msg.chat.id, msg.message_id);
         connection.query(
             "SELECT * FROM users WHERE userid = ?", [userId],
             (error, results) => {
@@ -1365,20 +1385,6 @@ bot.on("callback_query", (callbackQuery) => {
                     if (results.length === 0) {
                         console.log("2");
                     } else {
-                        let var1 = (results[0].step1 === 1) ? 'Страница OLOVE в Инстаграм' : (results[0].step1 === 2) ? 'Страница других пользователей в Инстаграм' : (results[0].step1 === 3) ? 'Знакомых' : results[0].step1
-                        let var2 = results[0].step2
-                        let var3 = (results[0].step3 === '1') ? 'Да' : 'Нет'
-                        bot.answerCallbackQuery(callbackQuery.id).then(() =>
-                            bot.sendMessage(
-                                msg.chat.id,
-                                `Спасибо за уделенное время. Мы только запустили наше приложение, и Ваше мнение очень ценно для нас. 1 сентября мы объявим победителей нашего конкурса и вручим ценные призы. Оставайтесь с нами, впереди вас ждет много интересного.
-
-                                Ваши ответы:
-1) Откуда Вы узнали про приложение - ${var1}
-2) Насколько удобно было пройти регистрацию в приложении - ${var2}
-3) Будете ли Вы использовать приложение - ${var3}`
-                            )
-                        );
                         const sql =
                             "UPDATE users SET step = '6' , step3 = '1' WHERE userid = ?";
                         connection.query(sql, userId, function(err, results) {
@@ -1389,8 +1395,124 @@ bot.on("callback_query", (callbackQuery) => {
                 }
             }
         );
-        bot.deleteMessage(msg.chat.id, msg.message_id);
     } else if (msgId === "var3-2") {
+        bot.answerCallbackQuery(callbackQuery.id).then(() =>
+            bot.sendMessage(msg.chat.id, "Будете ли Вы использовать приложение?", {
+                reply_markup: {
+                    resize_keyboard: true,
+                    inline_keyboard: [
+                        [{
+                                text: "Да",
+                                callback_data: "var4-1",
+                            },
+                            {
+                                text: "Нет",
+                                callback_data: "var4-2",
+                            },
+                        ],
+                    ],
+                },
+            })
+        );
+        bot.deleteMessage(msg.chat.id, msg.message_id);
+        connection.query(
+            "SELECT * FROM users WHERE userid = ?", [userId],
+            (error, results) => {
+                if (error) {
+                    console.log(error, "1");
+                } else {
+                    if (results.length === 0) {
+                        console.log("2");
+                    } else {
+                        const sql =
+                            "UPDATE users SET step = '6' , step3 = '0' WHERE userid = ?";
+                        connection.query(sql, userId, function(err, results) {
+                            if (err) console.log(err, "3");
+                            else console.log("4");
+                        });
+                    }
+                }
+            }
+        );
+    } else if (msgId === "var3-3") {
+        bot.answerCallbackQuery(callbackQuery.id).then(() =>
+            bot.sendMessage(msg.chat.id, "Ilovani do'stlaringiz/tanishlaringizga tavsiya qilasizmi?", {
+                reply_markup: {
+                    resize_keyboard: true,
+                    inline_keyboard: [
+                        [{
+                                text: "Ha",
+                                callback_data: "var4-3",
+                            },
+                            {
+                                text: "Yo'q",
+                                callback_data: "var4-4",
+                            },
+                        ],
+                    ],
+                },
+            })
+        );
+        bot.deleteMessage(msg.chat.id, msg.message_id);
+        connection.query(
+            "SELECT * FROM users WHERE userid = ?", [userId],
+            (error, results) => {
+                if (error) {
+                    console.log(error, "1");
+                } else {
+                    if (results.length === 0) {
+                        console.log("2");
+                    } else {
+                        const sql =
+                            "UPDATE users SET step = '6' , step3 = '1' WHERE userid = ?";
+                        connection.query(sql, userId, function(err, results) {
+                            if (err) console.log(err, "3");
+                            else console.log("4");
+                        });
+                    }
+                }
+            }
+        );
+    } else if (msgId === "var3-4") {
+        bot.answerCallbackQuery(callbackQuery.id).then(() =>
+            bot.sendMessage(msg.chat.id, "Ilovani do'stlaringiz/tanishlaringizga tavsiya qilasizmi?", {
+                reply_markup: {
+                    resize_keyboard: true,
+                    inline_keyboard: [
+                        [{
+                                text: "Ha",
+                                callback_data: "var4-3",
+                            },
+                            {
+                                text: "Yo'q",
+                                callback_data: "var4-4",
+                            },
+                        ],
+                    ],
+                },
+            })
+        );
+        bot.deleteMessage(msg.chat.id, msg.message_id);
+        connection.query(
+            "SELECT * FROM users WHERE userid = ?", [userId],
+            (error, results) => {
+                if (error) {
+                    console.log(error, "1");
+                } else {
+                    if (results.length === 0) {
+                        console.log("2");
+                    } else {
+                        const sql =
+                            "UPDATE users SET step = '6' , step3 = '0' WHERE userid = ?";
+                        connection.query(sql, userId, function(err, results) {
+                            if (err) console.log(err, "3");
+                            else console.log("4");
+                        });
+                    }
+                }
+            }
+        );
+    } else if (msgId === "var4-1") {
         connection.query(
             "SELECT * FROM users WHERE userid = ?", [userId],
             (error, results) => {
@@ -1402,7 +1524,8 @@ bot.on("callback_query", (callbackQuery) => {
                     } else {
                         let var1 = (results[0].step1 === 1) ? 'Страница OLOVE в Инстаграм' : (results[0].step1 === 2) ? 'Страница других пользователей в Инстаграм' : (results[0].step1 === 3) ? 'Знакомых' : results[0].step1
                         let var2 = results[0].step2
-                        let var3 = (results[0].step3 === '1') ? 'Да' : 'Нет'
+                        let var3 = (results[0].step3 === '1') ? 'Да' : (results[0].step3 === '0') ? 'Нет' : results[0].step3
+                        let var4 = (results[0].step4 === '1') ? 'Да' : (results[0].step4 === '0') ? 'Нет' : results[0].step4
                         bot.answerCallbackQuery(callbackQuery.id).then(() =>
                             bot.sendMessage(
                                 msg.chat.id,
@@ -1411,11 +1534,12 @@ bot.on("callback_query", (callbackQuery) => {
                                 Ваши ответы:
 1) Откуда Вы узнали про приложение - ${var1}
 2) Насколько удобно было пройти регистрацию в приложении - ${var2}
-3) Будете ли Вы использовать приложение - ${var3}`
+3) Будете ли Вы использовать приложение - ${var3}
+3) Будете ли Вы рекомендовать приложение своим друзьям/знакомым? - ${var4}`
                             )
                         );
                         const sql =
-                            "UPDATE users SET step = '6' , step3 = '2' WHERE userid = ?";
+                            "UPDATE users SET step = '7' , step4 = '1' WHERE userid = ?";
                         connection.query(sql, userId, function(err, results) {
                             if (err) console.log(err, "3");
                             else console.log("4");
@@ -1425,7 +1549,44 @@ bot.on("callback_query", (callbackQuery) => {
             }
         );
         bot.deleteMessage(msg.chat.id, msg.message_id);
-    } else if (msgId === "var3-3") {
+    } else if (msgId === "var4-2") {
+        connection.query(
+            "SELECT * FROM users WHERE userid = ?", [userId],
+            (error, results) => {
+                if (error) {
+                    console.log(error, "1");
+                } else {
+                    if (results.length === 0) {
+                        console.log("2");
+                    } else {
+                        let var1 = (results[0].step1 === 1) ? 'Страница OLOVE в Инстаграм' : (results[0].step1 === 2) ? 'Страница других пользователей в Инстаграм' : (results[0].step1 === 3) ? 'Знакомых' : results[0].step1
+                        let var2 = results[0].step2
+                        let var3 = (results[0].step3 === '1') ? 'Да' : (results[0].step3 === '0') ? 'Нет' : results[0].step3
+                        let var4 = (results[0].step4 === '1') ? 'Да' : (results[0].step4 === '0') ? 'Нет' : results[0].step4
+                        bot.answerCallbackQuery(callbackQuery.id).then(() =>
+                            bot.sendMessage(
+                                msg.chat.id,
+                                `Спасибо за уделенное время. Мы только запустили наше приложение, и Ваше мнение очень ценно для нас. 1 сентября мы объявим победителей нашего конкурса и вручим ценные призы. Оставайтесь с нами, впереди вас ждет много интересного.
+
+                                Ваши ответы:
+1) Откуда Вы узнали про приложение - ${var1}
+2) Насколько удобно было пройти регистрацию в приложении - ${var2}
+3) Будете ли Вы использовать приложение - ${var3}
+4) Будете ли Вы рекомендовать приложение своим друзьям/знакомым? - ${var4}`
+                            )
+                        );
+                        const sql =
+                            "UPDATE users SET step = '7' , step4 = '0' WHERE userid = ?";
+                        connection.query(sql, userId, function(err, results) {
+                            if (err) console.log(err, "3");
+                            else console.log("4");
+                        });
+                    }
+                }
+            }
+        );
+        bot.deleteMessage(msg.chat.id, msg.message_id);
+    } else if (msgId === "var4-3") {
         connection.query(
             "SELECT * FROM users WHERE userid = ?", [userId],
             (error, results) => {
@@ -1437,7 +1598,8 @@ bot.on("callback_query", (callbackQuery) => {
                     } else {
                         let var1 = (results[0].step1 === 1) ? 'Instagram-dagi OLOVE sahifasi' : (results[0].step1 === 2) ? 'Instagram-dagi boshqa foydalanuvchilarning sahifasi' : (results[0].step1 === 3) ? 'Tanishlar orqali' : results[0].step1
                         let var2 = results[0].step2
-                        let var3 = (results[0].step3 === '1') ? 'Ha' : "Yo'q"
+                        let var3 = (results[0].step3 === '1') ? 'Ha' : (results[0].step3 === '0') ? "Yo'q" : results[0].step3
+                        let var4 = (results[0].step4 === '1') ? 'Ha' : (results[0].step4 === '0') ? "Yo'q" : results[0].step4
                         bot.answerCallbackQuery(callbackQuery.id).then(() =>
                             bot.sendMessage(
                                 msg.chat.id,
@@ -1445,11 +1607,12 @@ bot.on("callback_query", (callbackQuery) => {
 Sizning javoblaringiz:
 1) OLOVE ilovasi to'g'risida qaerdan eshitdingiz - ${var1}
 2) Ilovada ro'yxatdan o'tish qanchalik qulay bo'ldi - ${var2}
-3) Ilovadan kelajakda foydalanasizmi - ${var3}`
+3) Ilovadan kelajakda foydalanasizmi - ${var3}
+4) Ilovadan kelajakda foydalanasizmi - ${var4}`
                             )
                         );
                         const sql =
-                            "UPDATE users SET step = '6-1' , step3 = '1' WHERE userid = ?";
+                            "UPDATE users SET step = '7-1' , step4 = '1' WHERE userid = ?";
                         connection.query(sql, userId, function(err, results) {
                             if (err) console.log(err, "3");
                             else console.log("4");
@@ -1459,7 +1622,7 @@ Sizning javoblaringiz:
             }
         );
         bot.deleteMessage(msg.chat.id, msg.message_id);
-    } else if (msgId === "var3-4") {
+    } else if (msgId === "var4-4") {
         connection.query(
             "SELECT * FROM users WHERE userid = ?", [userId],
             (error, results) => {
@@ -1471,7 +1634,8 @@ Sizning javoblaringiz:
                     } else {
                         let var1 = (results[0].step1 === 1) ? 'Instagram-dagi OLOVE sahifasi' : (results[0].step1 === 2) ? 'Instagram-dagi boshqa foydalanuvchilarning sahifasi' : (results[0].step1 === 3) ? 'Tanishlar orqali' : results[0].step1
                         let var2 = results[0].step2
-                        let var3 = (results[0].step3 === '1') ? 'Ha' : "Yo'q"
+                        let var3 = (results[0].step3 === '1') ? 'Ha' : (results[0].step3 === '0') ? "Yo'q" : results[0].step3
+                        let var4 = (results[0].step4 === '1') ? 'Ha' : (results[0].step4 === '0') ? "Yo'q" : results[0].step4
                         bot.answerCallbackQuery(callbackQuery.id).then(() =>
                             bot.sendMessage(
                                 msg.chat.id,
@@ -1479,11 +1643,12 @@ Sizning javoblaringiz:
 Sizning javoblaringiz:
 1) OLOVE ilovasi to'g'risida qaerdan eshitdingiz - ${var1}
 2) Ilovada ro'yxatdan o'tish qanchalik qulay bo'ldi - ${var2}
-3) Ilovadan kelajakda foydalanasizmi - ${var3}`
+3) Ilovadan kelajakda foydalanasizmi - ${var3}
+4) Ilovadan kelajakda foydalanasizmi - ${var4}`
                             )
                         );
                         const sql =
-                            "UPDATE users SET step = '6-1' , step3 = '2' WHERE userid = ?";
+                            "UPDATE users SET step = '7-1' , step4 = '0' WHERE userid = ?";
                         connection.query(sql, userId, function(err, results) {
                             if (err) console.log(err, "3");
                             else console.log("4");
