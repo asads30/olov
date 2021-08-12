@@ -1676,15 +1676,9 @@ bot.on("callback_query", (callbackQuery) => {
                         let var3 =
                             results[0].step3 === "1" ?
                             "Да" :
-                            results[0].step3 === "2" ?
+                            results[0].step3 === "0" ?
                             "Нет" :
                             results[0].step3;
-                        let var4 =
-                            results[0].step4 === "1" ?
-                            "Да" :
-                            results[0].step4 === "0" ?
-                            "Нет" :
-                            results[0].step4;
                         bot.answerCallbackQuery(callbackQuery.id).then(() =>
                             setTimeout(
                                 bot.sendMessage(
@@ -1733,15 +1727,9 @@ bot.on("callback_query", (callbackQuery) => {
                         let var3 =
                             results[0].step3 === "1" ?
                             "Да" :
-                            results[0].step3 === "2" ?
+                            results[0].step3 === "0" ?
                             "Нет" :
                             results[0].step3;
-                        let var4 =
-                            results[0].step4 === "1" ?
-                            "Да" :
-                            results[0].step4 === "0" ?
-                            "Нет" :
-                            results[0].step4;
                         bot.answerCallbackQuery(callbackQuery.id).then(() =>
                             setTimeout(
                                 bot.sendMessage(
@@ -1793,12 +1781,6 @@ bot.on("callback_query", (callbackQuery) => {
                             results[0].step3 === "0" ?
                             "Yo'q" :
                             results[0].step3;
-                        let var4 =
-                            results[0].step4 === "1" ?
-                            "Ha" :
-                            results[0].step4 === "0" ?
-                            "Yo'q" :
-                            results[0].step4;
                         bot.answerCallbackQuery(callbackQuery.id).then(() =>
                             setTimeout(
                                 bot.sendMessage(
@@ -1849,12 +1831,6 @@ Sizning javoblaringiz:
                             results[0].step3 === "0" ?
                             "Yo'q" :
                             results[0].step3;
-                        let var4 =
-                            results[0].step4 === "1" ?
-                            "Ha" :
-                            results[0].step4 === "0" ?
-                            "Yo'q" :
-                            results[0].step4;
                         bot.answerCallbackQuery(callbackQuery.id).then(() =>
                             setTimeout(
                                 bot.sendMessage(
