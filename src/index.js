@@ -11,9 +11,9 @@ const bot = new TelegramBot(config.TOKEN, {
 /* DB */
 var db_config = {
    host: "45.84.227.117",
-   user: "asad",
-   password: "Asadbek3015130!@#!@#",
-   database: "olov1",
+   user: "asadbek",
+   password: "Asadbek3015130!@#",
+   database: "olov",
 };
 var connection;
 
