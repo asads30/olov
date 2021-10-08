@@ -238,7 +238,7 @@ bot.onText(/\/start/, (msg) => {
                      : results[0].step4;
                bot.sendMessage(
                   msg.chat.id,
-                  `Спасибо за уделенное время. Мы только запустили наше приложение, и Ваше мнение очень ценно для нас. 15 октября мы объявим победителей нашего конкурса и вручим ценные призы. Оставайтесь с нами, впереди вас ждет много интересного.
+                  `Спасибо за уделенное время. Мы только запустили наше приложение, и Ваше мнение очень ценно для нас. 7 ноября мы объявим победителей нашего конкурса и вручим ценные призы. Оставайтесь с нами, впереди вас ждет много интересного.
 Ваши ответы:
 1) Откуда Вы узнали про приложение - ${var1}
 2) Насколько удобно было пройти регистрацию в приложении - ${var2}
@@ -391,7 +391,7 @@ bot.onText(/\/start/, (msg) => {
                      : results[0].step4;
                bot.sendMessage(
                   msg.chat.id,
-                  `Vaqtingiz uchun katta rahmat. Biz hozirda o'z dasturimizni ishga tushirdik va sizning fikr-mulohazalaringiz biz uchun juda qadrlidir. 15 oktyabr kuni biz tanlovimiz g'oliblarini e'lon qilamiz va qimmatbaho sovg'alarni topshiramiz. Bizni kuzatib turing, sizni oldinda ko'plab qiziqarli narsalar kutmoqda.
+                  `Vaqtingiz uchun katta rahmat. Biz hozirda o'z dasturimizni ishga tushirdik va sizning fikr-mulohazalaringiz biz uchun juda qadrlidir. 7 noyabr kuni biz tanlovimiz g'oliblarini e'lon qilamiz va qimmatbaho sovg'alarni topshiramiz. Bizni kuzatib turing, sizni oldinda ko'plab qiziqarli narsalar kutmoqda.
 Sizning javoblaringiz:
 1) OLOVE ilovasi to'g'risida qaerdan eshitdingiz - ${var1}
 2) Ilovada ro'yxatdan o'tish qanchalik qulay bo'ldi - ${var2}
@@ -1894,7 +1894,7 @@ bot.on("callback_query", (callbackQuery) => {
                      setTimeout(
                         bot.sendMessage(
                            msg.chat.id,
-                           `Спасибо за уделенное время. Мы только запустили наше приложение, и Ваше мнение очень ценно для нас. 15 октября мы объявим победителей нашего конкурса и вручим ценные призы. Оставайтесь с нами, впереди вас ждет много интересного.
+                           `Спасибо за уделенное время. Мы только запустили наше приложение, и Ваше мнение очень ценно для нас. 7 ноября мы объявим победителей нашего конкурса и вручим ценные призы. Оставайтесь с нами, впереди вас ждет много интересного.
 Ваши ответы:
 1) Откуда Вы узнали про приложение - ${var1}
 2) Насколько удобно было пройти регистрацию в приложении - ${var2}
@@ -1945,7 +1945,7 @@ bot.on("callback_query", (callbackQuery) => {
                      setTimeout(
                         bot.sendMessage(
                            msg.chat.id,
-                           `Спасибо за уделенное время. Мы только запустили наше приложение, и Ваше мнение очень ценно для нас. 15 октября мы объявим победителей нашего конкурса и вручим ценные призы. Оставайтесь с нами, впереди вас ждет много интересного.
+                           `Спасибо за уделенное время. Мы только запустили наше приложение, и Ваше мнение очень ценно для нас. 7 ноября мы объявим победителей нашего конкурса и вручим ценные призы. Оставайтесь с нами, впереди вас ждет много интересного.
 Ваши ответы:
 1) Откуда Вы узнали про приложение - ${var1}
 2) Насколько удобно было пройти регистрацию в приложении - ${var2}
@@ -1996,7 +1996,7 @@ bot.on("callback_query", (callbackQuery) => {
                      setTimeout(
                         bot.sendMessage(
                            msg.chat.id,
-                           `Vaqtingiz uchun katta rahmat. Biz hozirda o'z dasturimizni ishga tushirdik va sizning fikr-mulohazalaringiz biz uchun juda qadrlidir. 15 oktyabr kuni biz tanlovimiz g'oliblarini e'lon qilamiz va qimmatbaho sovg'alarni topshiramiz. Bizni kuzatib turing, sizni oldinda ko'plab qiziqarli narsalar kutmoqda.
+                           `Vaqtingiz uchun katta rahmat. Biz hozirda o'z dasturimizni ishga tushirdik va sizning fikr-mulohazalaringiz biz uchun juda qadrlidir. 7 noyabr kuni biz tanlovimiz g'oliblarini e'lon qilamiz va qimmatbaho sovg'alarni topshiramiz. Bizni kuzatib turing, sizni oldinda ko'plab qiziqarli narsalar kutmoqda.
 Sizning javoblaringiz:
 1) OLOVE ilovasi to'g'risida qaerdan eshitdingiz - ${var1}
 2) Ilovada ro'yxatdan o'tish qanchalik qulay bo'ldi - ${var2}
@@ -2047,7 +2047,7 @@ Sizning javoblaringiz:
                      setTimeout(
                         bot.sendMessage(
                            msg.chat.id,
-                           `Vaqtingiz uchun katta rahmat. Biz hozirda o'z dasturimizni ishga tushirdik va sizning fikr-mulohazalaringiz biz uchun juda qadrlidir. 15 oktyabr kuni biz tanlovimiz g'oliblarini e'lon qilamiz va qimmatbaho sovg'alarni topshiramiz. Bizni kuzatib turing, sizni oldinda ko'plab qiziqarli narsalar kutmoqda.
+                           `Vaqtingiz uchun katta rahmat. Biz hozirda o'z dasturimizni ishga tushirdik va sizning fikr-mulohazalaringiz biz uchun juda qadrlidir. 7 noyabr kuni biz tanlovimiz g'oliblarini e'lon qilamiz va qimmatbaho sovg'alarni topshiramiz. Bizni kuzatib turing, sizni oldinda ko'plab qiziqarli narsalar kutmoqda.
 Sizning javoblaringiz:
 1) OLOVE ilovasi to'g'risida qaerdan eshitdingiz - ${var1}
 2) Ilovada ro'yxatdan o'tish qanchalik qulay bo'ldi - ${var2}
